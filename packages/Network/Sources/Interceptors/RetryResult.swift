@@ -16,10 +16,10 @@ public enum RetryResult {
 extension RetryResult {
   var alamofireValue: Alamofire.RetryResult {
     switch self {
-      case .retry: .retry
-      case let .retryWithDelay(timeInterval): .retryWithDelay(timeInterval)
-      case .doNotRetry: .doNotRetry
-      case let .doNotRetryWithError(error): .doNotRetryWithError(error)
+    case .retry: .retry
+    case let .retryWithDelay(timeInterval): .retryWithDelay(timeInterval)
+    case .doNotRetry: .doNotRetry
+    case let .doNotRetryWithError(error): .doNotRetryWithError(error)
     }
   }
 }
