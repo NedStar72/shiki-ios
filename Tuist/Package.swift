@@ -16,5 +16,6 @@ let package = Package(
   name: "ShikiWorkspacePackages",
   dependencies: [
     .package(url: "https://github.com/uber/needle.git", .upToNextMinor(from: "0.24.0")),
+    .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.9.1")),
   ]
 )

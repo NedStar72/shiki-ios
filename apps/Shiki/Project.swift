@@ -24,6 +24,7 @@ let Shiki = Target.app(
   dependencies: [
     .externalPackage("NeedleFoundation"),
     .package("KeychainKit"),
+    .package("Network"),
   ]
 )
 
