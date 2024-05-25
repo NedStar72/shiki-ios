@@ -27,6 +27,7 @@ let Shiki = Target.app(
     .externalPackage("NeedleFoundation"),
     .package("KeychainKit"),
     .package("Network"),
+    .package("NavigationKit"),
     .feature(project: "Root", name: "RootCore"),
     .feature(project: "Root", name: "RootImplementation"),
     .feature(project: "Root", name: "RootUI"),
