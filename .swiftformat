@@ -1,0 +1,13 @@
+# file options
+
+--symlinks ignore
+--exclude apps/Shiki/Generated
+--swiftversion 5.10
+--minversion 0.53.0
+
+# rules
+
+--acronyms true
+--header strip
+--indent 2
+--disable andOperator, wrapMultilineStatementBraces

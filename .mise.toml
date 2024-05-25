@@ -1,2 +1,16 @@
 [tools]
 tuist = "4.9.0"
+swiftlint = "0.54.0"
+swiftformat = "0.53.8"
+
+[tasks."clean"]
+description = "Clean by git"
+run = "git clean -xdf"
+
+[tasks."lint"]
+description = "Lint the workspace"
+run = "./tools/make/lint.sh"
+
+[tasks."lint:fix"]
+description = "Lint the workspace fixing the issues"
+run = "./tools/make/lint-fix.sh"

@@ -1,0 +1,21 @@
+strict: false
+
+excluded:
+  - Tuist/.build
+  - tools
+  - apps/Shiki/Generated
+
+identifier_name:
+  min_length:
+    error: 1
+type_name:
+  min_length:
+    error: 1
+
+disabled_rules:
+  - inclusive_language
+  - trailing_comma
+  - line_length # TODO: fix
+  - identifier_name # TODO: fix
+
+reporter: "emoji"
