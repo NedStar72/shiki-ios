@@ -17,5 +17,6 @@ let package = Package(
   dependencies: [
     .package(url: "https://github.com/uber/needle.git", .upToNextMinor(from: "0.24.0")),
     .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.9.1")),
+    .package(url: "https://github.com/openid/AppAuth-iOS.git", .upToNextMajor(from: "1.3.0")),
   ]
 )

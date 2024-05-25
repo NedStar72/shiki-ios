@@ -3,6 +3,7 @@
     "Alamofire",
     "Keychain",
     "nedstar",
-    "Shiki"
+    "Shiki",
+    "tuist"
   ]
 }

@@ -5,7 +5,7 @@ public extension RequestInterceptor {
     urlRequest
   }
 
-  func retry(_: URLRequest, dueTo _: any Error) async -> RetryResult {
+  func retry(_: URLRequest, dueTo _: any Error, response _: HTTPURLResponse?) async -> RetryResult {
     .doNotRetry
   }
 }

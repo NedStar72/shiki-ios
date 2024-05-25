@@ -1,10 +1,17 @@
 
 
+import AppAuth
+import AuthCore
+import AuthImplementation
+import Foundation
 import KeychainKit
 import NeedleFoundation
+import Network
+import RootCore
+import RootImplementation
 
 // swiftlint:disable unused_declaration
-private let needleDependenciesHash : String? = "52bfaddedabca413422789c9ac9f530e"
+private let needleDependenciesHash : String? = "78a652f260fb5e56fba2e0b13c8fdcb5"
 
 // MARK: - Traversal Helpers
 
