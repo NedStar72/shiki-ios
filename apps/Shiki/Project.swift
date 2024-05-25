@@ -1,6 +1,15 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
 
+let needleGenerationScript = TargetScript.pre(
+  script: """
+  export SOURCEKIT_LOGGING=0 && ../../tools/needle generate Generated/NeedleGenerated.swift Sources/ \
+    --pluginized
+  """,
+  name: "Needle Generation Phase",
+  outputPaths: [.path("Generated/NeedleGenerated.swift")]
+)
+
 let Shiki = Target.app(
   name: "Shiki",
   extraInfoPlist: [
@@ -9,8 +18,12 @@ let Shiki = Target.app(
       ["CFBundleURLSchemes": ["dev.nedstar.shiki"]],
     ],
   ],
-  sources: ["Sources/**"],
-  resources: ["Resources/**"]
+  sources: ["Sources/**", "Generated/**"],
+  resources: ["Resources/**"],
+  scripts: [needleGenerationScript],
+  dependencies: [
+    .externalPackage("NeedleFoundation"),
+  ]
 )
 
 let ShikiTests = Target.unitTests(
