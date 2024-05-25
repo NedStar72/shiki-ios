@@ -1,9 +1,10 @@
 
 
+import KeychainKit
 import NeedleFoundation
 
 // swiftlint:disable unused_declaration
-private let needleDependenciesHash : String? = "d23ad6b0922e7738cddaad7376054fa1"
+private let needleDependenciesHash : String? = "52bfaddedabca413422789c9ac9f530e"
 
 // MARK: - Traversal Helpers
 

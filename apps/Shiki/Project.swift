@@ -23,6 +23,7 @@ let Shiki = Target.app(
   scripts: [needleGenerationScript],
   dependencies: [
     .externalPackage("NeedleFoundation"),
+    .package("KeychainKit"),
   ]
 )
 
