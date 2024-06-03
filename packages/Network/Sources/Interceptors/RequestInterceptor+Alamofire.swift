@@ -1,7 +1,7 @@
 import Alamofire
 import Foundation
 
-extension RequestInterceptor {
+public extension RequestInterceptor {
   func adapt(_ urlRequest: URLRequest,
              for _: Alamofire.Session,
              completion: @escaping (Result<URLRequest, Error>) -> Void) {

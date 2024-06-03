@@ -6,9 +6,11 @@ import KeychainKit
 import SwiftUtils
 
 public class AuthRepositoryImplementation: AuthRepository {
-  private var keychain: Keychain
-  private var deepLinks: AnyPublisher<URL, Never>
-  private var oauthRequest: OIDAuthorizationRequest
+  private let keychain: Keychain
+  private let deepLinks: AnyPublisher<URL, Never>
+  private let oauthRequest: OIDAuthorizationRequest
+  private let authGateway: AuthGateway
+
   private var currentAuthorizationFlow: OIDExternalUserAgentSession?
 
   private var accessTokenSubject: CurrentValueSubject<String?, Never>
@@ -17,16 +19,17 @@ public class AuthRepositoryImplementation: AuthRepository {
     accessTokenSubject
       // TODO: нельзя опираться на наличие токена для определения isLoggedIn
       .map { $0 == nil ? false : true }
-      .print("isLoggedIn")
       .eraseToAnyPublisher()
   }
 
   public init(keychain: Keychain,
               deepLinks: AnyPublisher<URL, Never>,
-              oauthRequest: OIDAuthorizationRequest) {
+              oauthRequest: OIDAuthorizationRequest,
+              authGateway: AuthGateway) {
     self.keychain = keychain
     self.deepLinks = deepLinks
     self.oauthRequest = oauthRequest
+    self.authGateway = authGateway
 
     accessTokenSubject = .init(keychain.accessToken)
   }
@@ -88,6 +91,18 @@ public class AuthRepositoryImplementation: AuthRepository {
     // TODO: переделать на Empty?
     Future { [unowned self] in
       setTokens(accessToken: nil, refreshToken: nil)
+    }
+    .eraseToAnyPublisher()
+  }
+
+  public func refreshTokens() -> AnyPublisher<Void, any Error> {
+    // TODO: Future + unowned self + async-await = 💩?
+    Future { [unowned self] in
+      guard let refreshToken = keychain.refreshToken else {
+        throw AuthRepositoryError.noRefreshToken
+      }
+      let (newAccessToken, newRefreshToken) = try await authGateway.refreshTokens(refreshToken)
+      setTokens(accessToken: newAccessToken, refreshToken: newRefreshToken)
     }
     .eraseToAnyPublisher()
   }

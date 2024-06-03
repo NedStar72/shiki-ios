@@ -39,6 +39,9 @@ let Shiki = Target.app(
     .feature(project: "Anime", name: "AnimeCore"),
     .feature(project: "Anime", name: "AnimeImplementation"),
     .feature(project: "Anime", name: "AnimeUI"),
+    .feature(project: "Profile", name: "ProfileCore"),
+    .feature(project: "Profile", name: "ProfileImplementation"),
+    .feature(project: "Profile", name: "ProfileUI"),
   ],
   environmentVariables: [
     "APP_URL_SCHEME": .plain(urlScheme),

@@ -18,10 +18,6 @@ public class AnimeGatewayImplementation: AnimeGateway {
       Param("limit", "50")
       Param("order", "ranked")
     }
-    let request = Request(
-      query: query,
-      method: .get
-    )
-    return try await network.request([AnimeCardImplementation].self, request)
+    return try await network.request([AnimeCardImplementation].self, query, method: .get)
   }
 }

@@ -26,8 +26,4 @@ public struct Query {
     let component = builder()
     component.modify(&self)
   }
-
-  public func toURL() -> URL? {
-    URL(string: string)
-  }
 }

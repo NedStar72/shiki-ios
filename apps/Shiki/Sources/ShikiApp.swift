@@ -8,21 +8,25 @@ enum FirstTabStep: Step {
   case animeList
 }
 
+enum SecondTabStep: Step {
+  case profile
+}
+
 @main
 struct ShikiApp: App {
   private let rootComponent: RootComponent
   private let animeComponent: AnimeComponent
+  private let profileComponent: ProfileComponent
 
   @State var appViewModel: AppViewModel
-  @State var authViewModel: AuthViewModel
 
   init() {
     registerProviderFactories()
     rootComponent = RootComponent()
     animeComponent = rootComponent.animeComponent
+    profileComponent = rootComponent.profileComponent
 
     appViewModel = rootComponent.appViewModel
-    authViewModel = AuthViewModel(authRepository: rootComponent.authRepository)
   }
 
   var body: some Scene {
@@ -38,7 +42,14 @@ struct ShikiApp: App {
         .tabItem {
           Label("Поиск", systemImage: "magnifyingglass")
         }
-        Auth(viewModel: authViewModel).tabItem {
+        Coordinator(initialStep: .profile) { (step: SecondTabStep) in
+          switch step {
+          case .profile:
+            profileComponent.profile
+          }
+        }
+        .stack()
+        .tabItem {
           Label("Профиль", systemImage: "person.crop.circle.fill")
         }
       }
