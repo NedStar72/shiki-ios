@@ -3,7 +3,10 @@ import ProjectDescriptionHelpers
 
 public let CombineUtils = Target.staticFramework(
   name: "CombineUtils",
-  sources: ["Sources/**"]
+  sources: ["Sources/**"],
+  dependencies: [
+    .externalPackage("CasePaths"),
+  ]
 )
 let CombineUtilsTests = Target.unitTests(
   target: CombineUtils,
